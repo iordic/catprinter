@@ -14,10 +14,11 @@ prompt-toolkit==3.0.19
 ptyprocess==0.7.0
 pycodestyle==2.7.0
 Pygments==2.9.0
-pyobjc-core==7.3
-pyobjc-framework-Cocoa==7.3
-pyobjc-framework-CoreBluetooth==7.3
-pyobjc-framework-libdispatch==7.3
+# Fails in Linux:
+#pyobjc-core==7.3
+#pyobjc-framework-Cocoa==7.3
+#pyobjc-framework-CoreBluetooth==7.3
+#pyobjc-framework-libdispatch==7.3
 toml==0.10.2
 traitlets==5.0.5
 wcwidth==0.2.5
