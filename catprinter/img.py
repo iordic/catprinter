@@ -1,4 +1,7 @@
 import cv2
+import io
+import qrcode
+import os
 
 
 def floyd_steinberg_dither(img):
@@ -64,3 +67,27 @@ def read_img(
 
     # Invert the image before returning it.
     return ~resized
+
+
+def generate_qr(value,
+            print_width,
+            logger,
+            img_binarization_algo,
+            show_preview):
+    TEMP_FILE = '/tmp/dummy_qr.png'
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=0,
+    )
+    qr.add_data(value)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(TEMP_FILE)
+    bin_img = read_img(TEMP_FILE, print_width,
+                    logger, img_binarization_algo, show_preview)
+    os.remove(TEMP_FILE)
+    return bin_img
+
